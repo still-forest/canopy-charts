@@ -1,4 +1,5 @@
 import type ProperDate from "@jszymanowski/proper-date.js";
+import { Flex, Text } from "@still-forest/canopy";
 import { AxisBottom, AxisLeft } from "@visx/axis";
 import { curveMonotoneX } from "@visx/curve";
 import { localPoint } from "@visx/event";
@@ -14,7 +15,6 @@ import { Crosshair } from "@/charts/components/Crosshair";
 import { Separator } from "@/charts/components/ui/separator";
 import chartStyle, { defaultTooltipStyles } from "@/charts/styles";
 import color from "@/color";
-import { Flex, Text } from "@still-forest/canopy";
 
 type TooltipData = {
   dataPoint: DataPoint;

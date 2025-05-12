@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Colors are based around shadcn color schemes: https://ui.shadcn.com/colors */
+@source "../node_modules/@still-forest/canopy/dist";
 
 @layer base {
   :root {

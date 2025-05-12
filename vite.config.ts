@@ -19,7 +19,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, "lib/main.ts"),
-      name: "Canopy",
+      name: "CanopyCharts",
       fileName: "index",
       formats: ["es"],
     },
