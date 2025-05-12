@@ -10,7 +10,7 @@ type ThemeProviderProps = {
 export default function ThemeProvider({
   children,
   defaultTheme = THEMES.LIGHT,
-  storageKey = "canopy-theme",
+  storageKey = "canopy-charts-theme",
   ...props
 }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>(() => {
