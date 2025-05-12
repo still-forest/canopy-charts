@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Text } from "@/primitives/main";
+import { Text } from "@still-forest/canopy";
 
 const meta: Meta<typeof Text> = {
   title: "Charts/Placeholder",

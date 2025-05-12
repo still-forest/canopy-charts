@@ -14,7 +14,7 @@ import { Crosshair } from "@/charts/components/Crosshair";
 import { Separator } from "@/charts/components/ui/separator";
 import chartStyle, { defaultTooltipStyles } from "@/charts/styles";
 import color from "@/color";
-import { Flex, Text } from "@/primitives/main";
+import { Flex, Text } from "@still-forest/canopy";
 
 type TooltipData = {
   dataPoint: DataPoint;

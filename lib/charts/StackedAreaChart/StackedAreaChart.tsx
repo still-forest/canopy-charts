@@ -19,7 +19,7 @@ import { displayUsd } from "@/charts/utilities";
 import { getTickValues, scaleUpNeatly } from "@/charts/utilities";
 import type { VisxAreaStack, VisxAreaStackData, VisxAreaStackDataPoint } from "@/charts/visx-types";
 import color from "@/color";
-import { Text } from "@/primitives/main";
+import { Text } from "@still-forest/canopy";
 import type { DataPoint, TooltipData } from "./types";
 
 export type StackedAreaChartProps = {
