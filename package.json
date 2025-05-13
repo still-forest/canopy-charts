@@ -1,6 +1,6 @@
 {
   "name": "@still-forest/canopy-charts",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": "John Szymanowski",
   "license": "MIT",
   "description": "React charts, built with VisX and Canopy",
