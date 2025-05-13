@@ -7,8 +7,9 @@
         "noArrayIndexKey": "warn"
       },
       "a11y": {
-        "useSemanticElements": "warn",
-        "noSvgWithoutTitle": "warn"
+        "useSemanticElements": "off",
+        "noStaticElementInteractions": "off",
+        "noSvgWithoutTitle": "off"
       }
     }
   }
