@@ -1,4 +1,4 @@
-import ProperDate from "@jszymanowski/proper-date.js";
+import type ProperDate from "@still-forest/proper-date.js";
 
 export interface TooltipData {
   date: ProperDate;

@@ -1,4 +1,4 @@
-import ProperDate from "@jszymanowski/proper-date.js";
+import ProperDate from "@still-forest/proper-date.js";
 import { mockExchangeRates } from "@stories/support/mockExchangeRates";
 import { createRandomTimeSeries } from "@stories/support/mockTimeSeries";
 import type { Meta, StoryObj } from "@storybook/react";

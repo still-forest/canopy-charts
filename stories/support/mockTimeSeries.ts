@@ -1,4 +1,4 @@
-import ProperDate from "@jszymanowski/proper-date.js";
+import ProperDate from "@still-forest/proper-date.js";
 
 export function createRandomTimeSeries() {
   const startDate = new ProperDate("2023-12-31");
