@@ -43,9 +43,7 @@ export const AreaChart = ({
   const yMin = data.length > 0 ? scaleUpNeatly(min(data, getY) || 0) : 0;
   const yMax = data.length > 0 ? scaleUpNeatly(max(data, getY) || 0) : 0;
   const xDomain: [number, number] =
-    data.length > 0
-      ? (extent(data, getX) as [number, number])
-      : [new Date().getTime() - 86400000, new Date().getTime()]; // Default to last 24 hours if no data
+    data.length > 0 ? (extent(data, getX) as [number, number]) : [Date.now() - 86400000, Date.now()]; // Default to last 24 hours if no data
   const yDomain: [number, number] = useMemo(
     () => [Math.min(0, yMin), Math.max(0, yMax)] as [number, number],
     [yMin, yMax],

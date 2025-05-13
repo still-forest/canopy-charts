@@ -1,5 +1,5 @@
-import type ProperDate from "@jszymanowski/proper-date.js";
 import { Flex, Text } from "@still-forest/canopy";
+import type ProperDate from "@still-forest/proper-date.js";
 import { AxisBottom, AxisLeft } from "@visx/axis";
 import { curveMonotoneX } from "@visx/curve";
 import { localPoint } from "@visx/event";

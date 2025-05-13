@@ -1,5 +1,5 @@
-import ProperDate from "@jszymanowski/proper-date.js";
 import { Text } from "@still-forest/canopy";
+import ProperDate from "@still-forest/proper-date.js";
 import { AxisBottom, AxisLeft, type AxisScale } from "@visx/axis";
 import { curveMonotoneX } from "@visx/curve";
 import { localPoint } from "@visx/event";
@@ -16,8 +16,7 @@ import { Crosshair } from "@/charts/components/Crosshair";
 import { Separator } from "@/charts/components/ui/separator";
 import chartStyle from "@/charts/styles";
 import { defaultTooltipStyles } from "@/charts/styles";
-import { displayUsd } from "@/charts/utilities";
-import { getTickValues, scaleUpNeatly } from "@/charts/utilities";
+import { displayUsd, getTickValues, scaleUpNeatly } from "@/charts/utilities";
 import type { VisxAreaStack, VisxAreaStackData, VisxAreaStackDataPoint } from "@/charts/visx-types";
 import color from "@/color";
 import type { DataPoint, TooltipData } from "./types";

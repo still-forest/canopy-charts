@@ -1,1 +1,1 @@
-ignores: ["@jszymanowski/biomejs-config", "@testing-library/react", "@stories/**", "@src/**", "@storybook/addon-essentials", "@storybook/addon-interactions"]
+ignores: ["@still-forest/biomejs-config", "@testing-library/react", "@stories/**", "@src/**", "@storybook/addon-essentials", "@storybook/addon-interactions"]
