@@ -1,4 +1,4 @@
-import { Flex, Text } from "@still-forest/canopy";
+import { Flex, Separator, Text } from "@still-forest/canopy";
 import type ProperDate from "@still-forest/proper-date.js";
 import { AxisBottom, AxisLeft } from "@visx/axis";
 import { curveMonotoneX } from "@visx/curve";
@@ -12,7 +12,6 @@ import { bisector, extent, max, min } from "@visx/vendor/d3-array";
 import type React from "react";
 import { useMemo } from "react";
 import { Crosshair } from "@/charts/components/Crosshair";
-import { Separator } from "@/charts/components/ui/separator";
 import chartStyle, { defaultTooltipStyles } from "@/charts/styles";
 import color from "@/color";
 
