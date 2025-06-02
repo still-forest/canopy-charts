@@ -1,7 +1,7 @@
 import ProperDate from "@still-forest/proper-date.js";
 import { mockExchangeRates } from "@stories/support/mockExchangeRates";
 import { createRandomTimeSeries } from "@stories/support/mockTimeSeries";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { LineChart } from "@/main";
 
 const meta: Meta<typeof LineChart> = {
