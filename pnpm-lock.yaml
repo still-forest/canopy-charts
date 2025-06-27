@@ -83,8 +83,8 @@ importers:
         specifier: 16.3.0
         version: 16.3.0(@testing-library/dom@10.4.0)(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@types/lodash':
-        specifier: 4.17.17
-        version: 4.17.17
+        specifier: 4.17.18
+        version: 4.17.18
       '@types/node':
         specifier: 22.15.32
         version: 22.15.32
@@ -1596,8 +1596,8 @@ packages:
   '@types/geojson@7946.0.16':
     resolution: {integrity: sha512-6C8nqWur3j98U6+lXDfTUWIfgvZU+EumvpHKcYjujKH7woYyLj2sUmff0tRhrqM7BohUw7Pz3ZB1jj2gW9Fvmg==}
 
-  '@types/lodash@4.17.17':
-    resolution: {integrity: sha512-RRVJ+J3J+WmyOTqnz3PiBLA501eKwXl2noseKOrNo/6+XEHjTAxO4xHvxQB6QuNm+s4WRbn6rSiap8+EA+ykFQ==}
+  '@types/lodash@4.17.18':
+    resolution: {integrity: sha512-KJ65INaxqxmU6EoCiJmRPZC9H9RVWCRd349tXM2M3O5NA7cY6YL7c0bHAHQ93NOfTObEQ004kd2QVHs/r0+m4g==}
 
   '@types/mdx@2.0.13':
     resolution: {integrity: sha512-+OWZQfAYyio6YkJb3HLxDrvnx6SWWDbC0zVPfBRzUk0/nqoDyf6dNxQi3eArPe8rJ473nobTMQ/8Zk+LxJ+Yuw==}
@@ -4892,7 +4892,7 @@ snapshots:
 
   '@types/geojson@7946.0.16': {}
 
-  '@types/lodash@4.17.17': {}
+  '@types/lodash@4.17.18': {}
 
   '@types/mdx@2.0.13': {}
 
@@ -4992,7 +4992,7 @@ snapshots:
 
   '@visx/responsive@3.12.0(react@19.1.0)':
     dependencies:
-      '@types/lodash': 4.17.17
+      '@types/lodash': 4.17.18
       '@types/react': 19.1.8
       lodash: 4.17.21
       prop-types: 15.8.1
@@ -5006,7 +5006,7 @@ snapshots:
     dependencies:
       '@types/d3-path': 1.0.11
       '@types/d3-shape': 1.3.12
-      '@types/lodash': 4.17.17
+      '@types/lodash': 4.17.18
       '@types/react': 19.1.8
       '@visx/curve': 3.12.0
       '@visx/group': 3.12.0(react@19.1.0)
@@ -5020,7 +5020,7 @@ snapshots:
 
   '@visx/text@3.12.0(react@19.1.0)':
     dependencies:
-      '@types/lodash': 4.17.17
+      '@types/lodash': 4.17.18
       '@types/react': 19.1.8
       classnames: 2.5.1
       lodash: 4.17.21
