@@ -27,9 +27,9 @@ type DataPoint = {
 };
 
 // accessors
-const getX = (d: DataPoint): Date => d.date.toDate();
+const getX = (d: DataPoint): Date => d.date.toLocalDate();
 const getY = (d: DataPoint): number => d.value;
-const bisectDate = bisector<DataPoint, Date>((d) => d.date.toDate()).left;
+const bisectDate = bisector<DataPoint, Date>((d) => d.date.toLocalDate()).left;
 
 export type LineChartProps = {
   data: DataPoint[];

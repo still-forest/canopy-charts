@@ -1,5 +1,5 @@
 import { Separator, Text } from "@still-forest/canopy";
-import ProperDate from "@still-forest/proper-date.js";
+import { getProperDateFromDate } from "@still-forest/proper-date.js";
 import { AxisBottom, AxisLeft, type AxisScale } from "@visx/axis";
 import { curveMonotoneX } from "@visx/curve";
 import { localPoint } from "@visx/event";
@@ -66,7 +66,7 @@ export const StackedAreaChart = ({
     const value = serie ? serie.y : 0;
 
     return {
-      date: new ProperDate(dataPoint.x),
+      date: getProperDateFromDate(dataPoint.x),
       total: dataPoint.yTotal,
       label,
       value,
