@@ -91,25 +91,25 @@ export const AreaChart = ({
 
   return (
     <div ref={parentRef} style={{ width: "100%", height: "100%" }}>
-      <svg width={width} height={height}>
+      <svg height={height} width={width}>
         <Group left={margin.left} top={margin.top}>
           <LinearGradient
-            id="area-gradient"
             from={chartStyle.colors.primary}
             fromOpacity={opacity}
+            id="area-gradient"
             to={chartStyle.colors.primaryMediumLight}
             toOpacity={opacity * 0.5}
           />
           <AreaClosed
+            curve={curveMonotoneX}
             data={data}
+            fill="url(#area-gradient)"
+            stroke="url(#area-gradient)"
+            strokeWidth={2}
             x={getXPlot}
             y={getYPlot}
             y0={getY0Plot}
             yScale={yScale}
-            strokeWidth={2}
-            stroke="url(#area-gradient)"
-            fill="url(#area-gradient)"
-            curve={curveMonotoneX}
           />
           {React.Children.map(children, (child) =>
             React.isValidElement<ChildWithSizes>(child) ? React.cloneElement(child, { width, height }) : child,

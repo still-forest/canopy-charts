@@ -30,8 +30,8 @@ function Handle({ x, height, isBrushActive }: BrushHandleRenderProps) {
   return (
     <Group left={x + pathWidth / 2} top={(height - pathHeight) / 2}>
       <path
-        fill="#f2f2f2"
         d="M -4.5 0.5 L 3.5 0.5 L 3.5 15.5 L -4.5 15.5 L -4.5 0.5 M -1.5 4 L -1.5 12 M 0.5 4 L 0.5 12"
+        fill="#f2f2f2"
         stroke="#999999"
         strokeWidth="1"
         style={{ cursor: "ew-resize" }}
@@ -114,20 +114,20 @@ export const Brush = ({
 
   return (
     <VisxBrush
-      xScale={xScale}
-      yScale={yScale}
-      width={maxWidth}
-      height={maxHeight}
-      margin={margin}
-      handleSize={8}
-      innerRef={brushRef}
-      resizeTriggerAreas={["left", "right"]}
       brushDirection="horizontal"
+      handleSize={8}
+      height={maxHeight}
       initialBrushPosition={initialBrushPosition}
+      innerRef={brushRef}
+      margin={margin}
       onChange={onChange}
+      renderBrushHandle={Handle}
+      resizeTriggerAreas={["left", "right"]}
       selectedBoxStyle={selectedBrushStyle}
       useWindowMoveEvents
-      renderBrushHandle={Handle}
+      width={maxWidth}
+      xScale={xScale}
+      yScale={yScale}
     />
   );
 };

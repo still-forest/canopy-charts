@@ -1,5 +1,5 @@
 import { Separator, Text } from "@still-forest/canopy";
-import ProperDate from "@still-forest/proper-date.js";
+import { getProperDateFromDate } from "@still-forest/proper-date.js";
 import { AxisBottom, AxisLeft, type AxisScale } from "@visx/axis";
 import { curveMonotoneX } from "@visx/curve";
 import { localPoint } from "@visx/event";
@@ -66,7 +66,7 @@ export const StackedAreaChart = ({
     const value = serie ? serie.y : 0;
 
     return {
-      date: new ProperDate(dataPoint.x),
+      date: getProperDateFromDate(dataPoint.x),
       total: dataPoint.yTotal,
       label,
       value,
@@ -164,141 +164,139 @@ export const StackedAreaChart = ({
   const gradientId = useId();
 
   return (
-    <>
-      <div ref={parentRef} style={{ width: "100%", height: "100%" }}>
-        <svg
-          ref={containerRef}
-          width={width}
-          height={height}
-          role="img"
-          aria-label="Stacked area chart showing data trends over time"
+    <div ref={parentRef} style={{ width: "100%", height: "100%" }}>
+      <svg
+        aria-label="Stacked area chart showing data trends over time"
+        height={height}
+        ref={containerRef}
+        role="img"
+        width={width}
+      >
+        <GridRows
+          left={xRange[0]}
+          numTicks={yAxisTicks}
+          scale={yScale}
+          stroke={gridColor}
+          strokeDasharray="1,2"
+          top={0}
+          width={xRange[1] - yAxisWidth}
+        />
+        <GridColumns
+          height={yRange[0] - margin.top - 1}
+          numTicks={xAxisTicks}
+          scale={xScale}
+          stroke={gridColor}
+          strokeDasharray="1,2"
+          top={yRange[1]}
+        />
+        <LinearGradient
+          from={chartStyle.colors.primaryMediumDark}
+          id={gradientId}
+          to={chartStyle.colors.primaryMediumLight}
+          toOpacity={0.5}
+        />
+        <LinePath
+          curve={curveMonotoneX}
+          data={data}
+          stroke={chartStyle.colors.primaryDark}
+          strokeWidth={2}
+          x={(d) => xScale(getX(d)) ?? 0}
+          y={(d) => yScale(getTotalY(d)) ?? 0}
+        />
+        <AreaStack
+          curve={curveMonotoneX}
+          data={data.map(getAreaStackData)}
+          keys={data.length ? getKeys(data[0]) : []}
+          offset="diverging"
+          x={(d: VisxAreaStackDataPoint) => xScale(getStackX(d)) ?? 0}
+          y0={(d: VisxAreaStackDataPoint) => yScale(getStackY0(d)) ?? 0}
+          y1={(d: VisxAreaStackDataPoint) => yScale(getStackY1(d)) ?? 0}
         >
-          <GridRows
-            top={0}
-            left={xRange[0]}
-            width={xRange[1] - yAxisWidth}
-            scale={yScale}
-            numTicks={yAxisTicks}
-            stroke={gridColor}
-            strokeDasharray="1,2"
+          {({ stacks, path }) =>
+            stacks.map((stack) => (
+              <path
+                d={path(stack) || ""}
+                fill={`url(#${gradientId})`}
+                key={`stack-${stack.key}`}
+                onMouseLeave={() => {
+                  tooltipTimeout.current = window.setTimeout(() => {
+                    hideTooltip();
+                  }, 300);
+                }}
+                onMouseMove={(event: React.PointerEvent<SVGRectElement>) =>
+                  onMouseMove(event, stack as unknown as VisxAreaStack)
+                }
+                stroke={chartStyle.colors.primaryDark}
+                strokeWidth={0.5}
+              />
+            ))
+          }
+        </AreaStack>
+        <AxisLeft
+          left={yAxisWidth}
+          numTicks={yAxisTicks}
+          scale={yScale}
+          stroke={axesColor}
+          tickFormat={tickFormat}
+          tickLabelProps={{
+            fill: axesColor,
+            fontSize: 12,
+          }}
+          tickStroke={axesColor}
+          tickValues={getTickValues(yDomain, yAxisTicks)}
+        />
+        <AxisBottom
+          numTicks={xAxisTicks}
+          scale={xScale}
+          stroke={axesColor}
+          tickLabelProps={{
+            fill: axesColor,
+            fontSize: 12,
+            textAnchor: "middle",
+          }}
+          tickStroke={axesColor}
+          top={xAxisTop}
+        />
+        {tooltipData && (
+          <Crosshair
+            height={yRange[0]}
+            left={tooltipLeft || 0}
+            top={tooltipTop}
+            width={maxWidth}
+            xOffset={xRange[0]}
+            yOffset={margin.top}
           />
-          <GridColumns
-            top={yRange[1]}
-            height={yRange[0] - margin.top - 1}
-            scale={xScale}
-            numTicks={xAxisTicks}
-            stroke={gridColor}
-            strokeDasharray="1,2"
-          />
-          <LinearGradient
-            id={gradientId}
-            from={chartStyle.colors.primaryMediumDark}
-            to={chartStyle.colors.primaryMediumLight}
-            toOpacity={0.5}
-          />
-          <LinePath
-            data={data}
-            x={(d) => xScale(getX(d)) ?? 0}
-            y={(d) => yScale(getTotalY(d)) ?? 0}
-            stroke={chartStyle.colors.primaryDark}
-            strokeWidth={2}
-            curve={curveMonotoneX}
-          />
-          <AreaStack
-            keys={data.length ? getKeys(data[0]) : []}
-            data={data.map(getAreaStackData)}
-            offset="diverging"
-            x={(d: VisxAreaStackDataPoint) => xScale(getStackX(d)) ?? 0}
-            y0={(d: VisxAreaStackDataPoint) => yScale(getStackY0(d)) ?? 0}
-            y1={(d: VisxAreaStackDataPoint) => yScale(getStackY1(d)) ?? 0}
-            curve={curveMonotoneX}
-          >
-            {({ stacks, path }) =>
-              stacks.map((stack) => (
-                <path
-                  key={`stack-${stack.key}`}
-                  d={path(stack) || ""}
-                  stroke={chartStyle.colors.primaryDark}
-                  strokeWidth={0.5}
-                  fill={`url(#${gradientId})`}
-                  onMouseLeave={() => {
-                    tooltipTimeout.current = window.setTimeout(() => {
-                      hideTooltip();
-                    }, 300);
-                  }}
-                  onMouseMove={(event: React.PointerEvent<SVGRectElement>) =>
-                    onMouseMove(event, stack as unknown as VisxAreaStack)
-                  }
-                />
-              ))
-            }
-          </AreaStack>
-          <AxisLeft
-            left={yAxisWidth}
-            scale={yScale}
-            stroke={axesColor}
-            numTicks={yAxisTicks}
-            tickStroke={axesColor}
-            tickFormat={tickFormat}
-            tickValues={getTickValues(yDomain, yAxisTicks)}
-            tickLabelProps={{
-              fill: axesColor,
-              fontSize: 12,
-            }}
-          />
-          <AxisBottom
-            top={xAxisTop}
-            scale={xScale}
-            stroke={axesColor}
-            numTicks={xAxisTicks}
-            tickStroke={axesColor}
-            tickLabelProps={{
-              fill: axesColor,
-              fontSize: 12,
-              textAnchor: "middle",
-            }}
-          />
-          {tooltipData && (
-            <Crosshair
-              left={tooltipLeft || 0}
-              top={tooltipTop}
-              xOffset={xRange[0]}
-              yOffset={margin.top}
-              width={maxWidth}
-              height={yRange[0]}
-            />
-          )}
-        </svg>
-        {tooltipOpen && tooltipData && (
-          <>
-            <TooltipInPortal
-              top={tooltipTop - 60}
-              left={tooltipLeft}
-              className="bg-card/90"
-              style={{
-                ...defaultTooltipStyles,
-                minWidth: 72,
-              }}
-            >
-              <Text weight="semibold">{tooltipData.label}</Text>
-              <Text family="sans" numeric>
-                {displayUsd(tooltipData.value)}
-              </Text>
-            </TooltipInPortal>
-
-            <TooltipInPortal top={height - 35} left={tooltipLeft} className="bg-card/90" style={defaultTooltipStyles}>
-              <Text weight="semibold">{tooltipData.date.formatted}</Text>
-              <Separator className="my-1" />
-              <span className="font-display">
-                Total:{" "}
-                <Text as="span" family="sans" numeric>
-                  {displayUsd(tooltipData.total)}
-                </Text>
-              </span>
-            </TooltipInPortal>
-          </>
         )}
-      </div>
-    </>
+      </svg>
+      {tooltipOpen && tooltipData && (
+        <>
+          <TooltipInPortal
+            className="bg-card/90"
+            left={tooltipLeft}
+            style={{
+              ...defaultTooltipStyles,
+              minWidth: 72,
+            }}
+            top={tooltipTop - 60}
+          >
+            <Text weight="semibold">{tooltipData.label}</Text>
+            <Text family="sans" numeric>
+              {displayUsd(tooltipData.value)}
+            </Text>
+          </TooltipInPortal>
+
+          <TooltipInPortal className="bg-card/90" left={tooltipLeft} style={defaultTooltipStyles} top={height - 35}>
+            <Text weight="semibold">{tooltipData.date.formatted}</Text>
+            <Separator className="my-1" />
+            <span className="font-display">
+              Total:{" "}
+              <Text as="span" family="sans" numeric>
+                {displayUsd(tooltipData.total)}
+              </Text>
+            </span>
+          </TooltipInPortal>
+        </>
+      )}
+    </div>
   );
 };
