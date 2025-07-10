@@ -29,23 +29,23 @@ export const Crosshair = React.memo(function Crosshair({
     <g>
       <Line
         from={{ x: left, y: yOffset }}
-        to={{ x: left, y: height }}
-        stroke={strokeColor}
-        strokeWidth={1}
-        strokeOpacity={0.7}
         pointerEvents="none"
+        stroke={strokeColor}
         strokeDasharray="5,3"
+        strokeOpacity={0.7}
+        strokeWidth={1}
+        to={{ x: left, y: height }}
       />
       <Line
         from={{ x: xOffset, y: top }}
-        to={{ x: width, y: top }}
-        stroke={strokeColor}
-        strokeWidth={1}
-        strokeOpacity={0.7}
         pointerEvents="none"
+        stroke={strokeColor}
         strokeDasharray="5,3"
+        strokeOpacity={0.7}
+        strokeWidth={1}
+        to={{ x: width, y: top }}
       />
-      <circle cx={left} cy={top} r={6} fill={pointColor} stroke="white" strokeWidth={2} pointerEvents="none" />
+      <circle cx={left} cy={top} fill={pointColor} pointerEvents="none" r={6} stroke="white" strokeWidth={2} />
     </g>
   );
 });

@@ -153,7 +153,7 @@ export const LineChart = ({ data, label, margin = { top: 10, right: 10, bottom: 
   // Empty data case
   if (!data || data.length === 0) {
     return (
-      <Flex align="center" justify="center" className="h-full w-full border">
+      <Flex align="center" className="h-full w-full border" justify="center">
         <Text className="p-4 text-center">No data available</Text>
       </Flex>
     );
@@ -161,76 +161,76 @@ export const LineChart = ({ data, label, margin = { top: 10, right: 10, bottom: 
 
   return (
     <div ref={parentRef} style={{ width: "100%", height: "100%", minHeight: 200 }}>
-      <svg ref={containerRef} width={totalWidth} height={yDimensions.total}>
+      <svg height={yDimensions.total} ref={containerRef} width={totalWidth}>
         <LinePath<DataPoint>
           data={data}
-          x={getXPlot}
-          y={getYPlot}
+          shapeRendering="geometricPrecision"
           stroke={chartStyle.colors.primaryDark}
           strokeWidth={1.5}
-          shapeRendering="geometricPrecision"
+          x={getXPlot}
+          y={getYPlot}
         />
         <LinearGradient
-          id="area-gradient"
           from={chartStyle.colors.primaryMediumDark}
+          id="area-gradient"
           to={chartStyle.colors.primaryMediumLight}
           toOpacity={0.5}
         />
         <AreaClosed
-          data={data}
-          x={getXPlot}
-          y={getYPlot}
-          yScale={yScale}
-          strokeWidth={1}
-          stroke={chartStyle.colors.primary}
-          fill="url(#area-gradient)"
           curve={curveMonotoneX}
+          data={data}
+          fill="url(#area-gradient)"
           onMouseLeave={() => {
             window.setTimeout(() => {
               hideTooltip();
             }, 300);
           }}
           onMouseMove={onMouseMove}
+          stroke={chartStyle.colors.primary}
+          strokeWidth={1}
+          x={getXPlot}
+          y={getYPlot}
+          yScale={yScale}
         />
         {tooltipData && (
           <Crosshair
+            height={yDimensions.total}
             left={tooltipLeft as number}
+            pointColor={chartStyle.colors.primaryDark}
             top={tooltipTop}
             width={xDimensions.total}
-            height={yDimensions.total}
-            pointColor={chartStyle.colors.primaryDark}
           />
         )}
         <AxisLeft
-          left={xDimensions.placement.axisLeft}
-          scale={yScale}
           hideZero={true}
-          stroke={color.gray["600"]}
+          left={xDimensions.placement.axisLeft}
           numTicks={5}
-          tickStroke={color.gray["600"]}
+          scale={yScale}
+          stroke={color.gray["600"]}
           tickLabelProps={{
             fill: color.gray["600"],
             fontSize: 12,
           }}
+          tickStroke={color.gray["600"]}
         />
         <g style={{ height: yDimensions.layout.xAxisHeight }}>
           <AxisBottom
-            top={yDimensions.placement.axisTop}
+            numTicks={numTicksForWidth(totalWidth)}
             scale={xScale}
             stroke={color.gray["600"]}
-            numTicks={numTicksForWidth(totalWidth)}
-            tickStroke={color.gray["600"]}
             tickLabelProps={{
               fill: color.gray["600"],
               fontSize: 12,
               textAnchor: "middle",
             }}
+            tickStroke={color.gray["600"]}
+            top={yDimensions.placement.axisTop}
           />
         </g>
       </svg>
       {tooltipOpen && tooltipData && (
         <>
-          <TooltipInPortal top={tooltipData.y} left={tooltipLeft} className="bg-card/90" style={defaultTooltipStyles}>
+          <TooltipInPortal className="bg-card/90" left={tooltipLeft} style={defaultTooltipStyles} top={tooltipData.y}>
             {label ? (
               <>
                 <Text weight="semibold">{label}</Text>
@@ -242,13 +242,13 @@ export const LineChart = ({ data, label, margin = { top: 10, right: 10, bottom: 
             </Text>
           </TooltipInPortal>
           <TooltipInPortal
-            top={yDimensions.placement.dateTooltipTop}
-            left={tooltipLeft}
             className="bg-card/90"
+            left={tooltipLeft}
             style={{
               ...defaultTooltipStyles,
               minWidth: 72,
             }}
+            top={yDimensions.placement.dateTooltipTop}
           >
             <Text>{tooltipData.dataPoint.date.formatted}</Text>
           </TooltipInPortal>
