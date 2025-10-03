@@ -40,7 +40,7 @@
     "release:dry-run": "release-it --dry-run"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.1.2",
+    "@biomejs/biome": "2.2.4",
     "@still-forest/biomejs-config": "2.0.1",
     "@storybook/addon-docs": "9.0.16",
     "@storybook/addon-themes": "9.0.16",
