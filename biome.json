@@ -10,6 +10,9 @@
         "useSemanticElements": "off",
         "noStaticElementInteractions": "off",
         "noSvgWithoutTitle": "off"
+      },
+      "correctness": {
+        "useUniqueElementIds": "warn"
       }
     }
   }
