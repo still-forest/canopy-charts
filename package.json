@@ -46,7 +46,7 @@
     "@storybook/addon-themes": "9.0.16",
     "@storybook/react-vite": "9.0.16",
     "@tailwindcss/vite": "4.1.16",
-    "@testing-library/jest-dom": "6.6.3",
+    "@testing-library/jest-dom": "6.9.1",
     "@testing-library/react": "16.3.0",
     "@types/lodash": "4.17.20",
     "@types/node": "22.15.33",
